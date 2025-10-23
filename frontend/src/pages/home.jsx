@@ -4,7 +4,6 @@ import Header from '../components/header'
 export default function Home() {
 	return (
 		<>
-			{fetch('http://localhost:8000/sweets.php').then(response => response.json())}
 			<Header />
 			<main>
 				<section className="sweet-banner">
