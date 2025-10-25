@@ -1,505 +1,525 @@
 body {
-    overflow: auto;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #E5E9DE;
-    position: relative;
-    min-height: 100vh;
+	overflow: auto;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #E5E9DE;
+	position: relative;
+	min-height: 100vh;
 }
 
 /* ========= Font ========= */
-h1, h2 {
-    font-family: "Cherry Bomb One", system-ui;
-    font-weight: 400;
-    font-style: normal;
+h1,
+h2 {
+	font-family: "Cherry Bomb One", system-ui;
+	font-weight: 400;
+	font-style: normal;
 }
 
 h1 {
-    font-size: 72px;
-    margin: 0;
-    line-height: 1;
+	font-size: 72px;
+	margin: 0;
+	line-height: 1;
 }
 
 h2 {
-    font-size: 36px;
-    margin: 0 0 15px 0;
+	font-size: 36px;
+	margin: 0 0 15px 0;
 }
 
 .sweet-banner p {
-    font-size: 24px;
-    margin-top: 20px;
+	font-size: 24px;
+	margin-top: 20px;
 }
 
 /* ============ HEADER ============ */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #E5E9DE;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	background-color: #E5E9DE;
 }
 
 /* ============ NAVIGATION ============ */
 nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
 }
 
 nav a {
-    font-family: 'Droid Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    text-decoration: none;
-    color: #000;
-    transition: color 0.3s;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	text-decoration: none;
+	color: #000;
+	transition: color 0.3s;
 }
 
 nav a:hover {
-    color: #24604C;
+	color: #24604C;
 }
 
 /* ============ IMAGES ============ */
 .logo {
-    height: 70px;
-    width: 180px;
+	height: 70px;
+	width: 180px;
 }
 
 .cart-button {
-    height: 90px;
-    width: 90px;
+	height: 90px;
+	width: 90px;
+}
+
+.login-button {
+	height: 60px;
+	width: 130px;
 }
 
 /* ============ MAIN CONTENT ============ */
 main {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: auto auto 1fr;
-    gap: 20px;
-    height: calc(100vh - 110px);
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	grid-template-rows: auto auto 1fr;
+	gap: 20px;
+	height: calc(100vh - 110px);
 }
 
 
 /* ============ BANNER ============ */
 .sweet-banner {
-    grid-column: 1;
-    grid-row: 1;
-    background-color: #F4BC64;
-    padding: 40px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 600px;
-    position: relative;
+	grid-column: 1;
+	grid-row: 1;
+	background-color: #F4BC64;
+	padding: 40px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 600px;
+	position: relative;
 }
 
 .sweet-banner h1 {
-    color: #FFFF;
+	color: #FFFF;
 }
 
 .sweet-banner p {
-    position: absolute;
-    margin-top: 40%;
-    left: 3%;
+	position: absolute;
+	margin-top: 40%;
+	left: 3%;
 }
 
 .food {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	object-fit: contain;
 }
 
 .food-1 {
-    width: 270px;
-    top: 1%;
-    left: 17%;
-    transform: rotate(-15deg);
+	width: 270px;
+	top: 1%;
+	left: 17%;
+	transform: rotate(-15deg);
 }
 
 .food-2 {
-    width: 330px;
-    top: -5%;
-    right: 30%;
-    transform: rotate(20deg);
+	width: 330px;
+	top: -5%;
+	right: 30%;
+	transform: rotate(20deg);
 }
 
 .food-3 {
-    width: 260px;
-    bottom: 40%;
-    right: 5%;
-    transform: rotate(-10deg);
+	width: 260px;
+	bottom: 40%;
+	right: 5%;
+	transform: rotate(-10deg);
 }
 
 .food-4 {
-    width: 300px;
-    bottom: 15%;
-    left: 5%;
-    transform: rotate(25deg);
+	width: 300px;
+	bottom: 15%;
+	left: 5%;
+	transform: rotate(25deg);
 }
 
-.food-5, .food-6 {
-    width: 210px;
-    transform: rotate(15deg);
+.food-5,
+.food-6 {
+	width: 210px;
+	transform: rotate(15deg);
 }
 
 .food-5 {
-    width: 270px;
-    top: 65%;
-    left: 38%;
+	width: 270px;
+	top: 65%;
+	left: 38%;
 }
 
 .food-6 {
-    width: 300px;
-    top: 60%;
-    right: 10%;
+	width: 300px;
+	top: 60%;
+	right: 10%;
 }
 
 /* ============ SCHOOL SECTION ============ */
 .school {
-    grid-column: 2;
-    grid-row: 1;
-    background-color: #89BEE1;
-    padding: 20px;
-    border-radius: 15px;
-    position: relative;
-    height: 350px;
-    background-image: url("../assets/images/chef.png");
-    background-repeat: no-repeat;
-    background-size: auto 270px;
-    background-position: bottom;
+	grid-column: 2;
+	grid-row: 1;
+	background-color: #89BEE1;
+	padding: 20px;
+	border-radius: 15px;
+	position: relative;
+	height: 350px;
+	background-image: url("../assets/images/chef.png");
+	background-repeat: no-repeat;
+	background-size: auto 270px;
+	background-position: bottom;
 }
 
 .school p {
-    margin-left: 30%;
+	margin-left: 30%;
 }
 
 .school h2 {
-    margin-left: 30%;
+	margin-left: 30%;
 }
 
 .skalka-img {
-    position: absolute;
-    height: 60px;
-    width: 60px;
-    right: 100px;
-    margin-top: 40%;
+	position: absolute;
+	height: 60px;
+	width: 60px;
+	right: 100px;
+	margin-top: 40%;
 }
 
 .explore-button {
-    position: absolute;
-    height: 60px;
-    width: 180px;
-    margin-top: 40%;
-    margin-left: 15%;
+	position: absolute;
+	height: 60px;
+	width: 180px;
+	margin-top: 40%;
+	margin-left: 15%;
 }
 
 .join-now-png {
-    position: absolute;
-    height: 230px;
+	position: absolute;
+	height: 230px;
 }
 
 
 /* ============ EVERYDAY SECTION ============ */
 .everyday {
-    grid-column: 2;
-    grid-row: 1;
-    background-color: #ED9358;
-    padding: 20px;
-    border-radius: 15px;
-    position: relative;
-    height: 75%;
-    margin-top:100%;
+	grid-column: 2;
+	grid-row: 1;
+	background-color: #ED9358;
+	padding: 20px;
+	border-radius: 15px;
+	position: relative;
+	height: 75%;
+	margin-top: 100%;
 }
 
 .everyday p {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
 }
 
 .tart-image {
-    position: absolute;
-    height: 320px;
-    width: 320px;
-    margin-left: 10%;
+	position: absolute;
+	height: 320px;
+	width: 320px;
+	margin-left: 10%;
 }
 
 .everyday h2 {
-    margin-left: 25%;
+	margin-left: 25%;
 }
 
 
 /* ============ TOP PICKS SECTION ============ */
 .top-picks {
-    grid-column: 1;
-    grid-row: 3;
-    display: flex;
-    gap: 30px;
-    align-items: center;
+	grid-column: 1;
+	grid-row: 3;
+	display: flex;
+	gap: 30px;
+	align-items: center;
 }
 
 .top-picks h2 {
-    line-height: 1.2;
-    margin-top: 0;
-    flex-shrink: 0;
+	line-height: 1.2;
+	margin-top: 0;
+	flex-shrink: 0;
 }
 
 .items-container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .item {
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-    align-items: center;
-    padding: 15px;
-    border-radius: 10px;
-    width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+	align-items: center;
+	padding: 15px;
+	border-radius: 10px;
+	width: 100%;
 }
 
 .item .name {
-    font-weight: bold;
-    white-space: nowrap;
+	font-weight: bold;
+	white-space: nowrap;
 }
 
 .item .desc {
-    font-size: 14px;
-    color: #555;
+	font-size: 14px;
+	color: #555;
 }
 
 .item .price {
-    font-weight: bold;
-    text-align: right;
-    margin-right: 100%;
+	font-weight: bold;
+	text-align: right;
+	margin-right: 100%;
 
 }
 
 .item .price span {
-    display: block;
-    font-weight: normal;
-    font-size: 14px;
+	display: block;
+	font-weight: normal;
+	font-size: 14px;
 }
 
 .item .plus-button {
-    width: 80px;
-    height: 80px;
+	width: 80px;
+	height: 80px;
 }
 
 .item .image {
-    background-color: #89BEE1;
-    height: 70px;
-    width: 70px;
-    border-radius: 15px;
-    background-image: var(--bg-url);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+	background-color: #89BEE1;
+	height: 70px;
+	width: 70px;
+	border-radius: 15px;
+	background-image: var(--bg-url);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 
 
 /* ============ ABOUT US SECTION ============ */
 .about-section {
-    position: absolute;
-    top: 10%;
-    align-self: center;
-    justify-content: center;
-    margin: 25px 25px;
+	position: absolute;
+	top: 10%;
+	align-self: center;
+	justify-content: center;
+	margin: 25px 25px;
 }
 
 .about-text {
-    padding: 1rem;
+	padding: 1rem;
 }
 
 .images-section {
-    position: absolute;
-    top: 33%;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    max-width: 100%;
+	position: absolute;
+	top: 33%;
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	max-width: 100%;
 }
 
 .images-section img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    object-fit: cover;
-    margin: 25px 25px;
+	width: 100%;
+	max-width: 500px;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	object-fit: cover;
+	margin: 25px 25px;
 }
 
 .values-section {
-    position: absolute;
-    top: 70%;
-    margin: 25px 25px;
+	position: absolute;
+	top: 70%;
+	margin: 25px 25px;
 }
 
 .values-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	flex-wrap: nowrap;
+	justify-content: space-between;
 }
 
 .value-card--blue {
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    text-align: center;
-    background-color: #89bee1;
+	border-radius: 10px;
+	padding: 1.5rem;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	background-color: #89bee1;
 }
 
 .value-card--orange {
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    text-align: center;
-    background-color: #f4bc64;
+	border-radius: 10px;
+	padding: 1.5rem;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	background-color: #f4bc64;
 }
 
 .value-card--red {
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    text-align: center;
-    background-color: #ed9358;
+	border-radius: 10px;
+	padding: 1.5rem;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	background-color: #ed9358;
 }
 
 .value-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+	font-size: 2rem;
+	margin-bottom: 1rem;
 }
 
 /* ============ PRODUCTS SECTION ============ */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    padding: 40px;
-    justify-items: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
+	padding: 40px;
+	justify-items: center;
 }
 
 .product-card {
-    width: 280px;
-    height: 350px;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
+	width: 280px;
+	height: 350px;
+	border-radius: 20px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
 }
 
 /*Card different colors*/
 .product-card:nth-child(6n+1),
 .product-card:nth-child(6n+6) {
-    background-color: #ed9358;
+	background-color: #ed9358;
 }
 
 .product-card:nth-child(6n+2),
 .product-card:nth-child(6n+4) {
-    background-color: #89bee1;
+	background-color: #89bee1;
 }
 
 .product-card:nth-child(6n+3),
 .product-card:nth-child(6n+5) {
-    background-color: #f4bc64;
+	background-color: #f4bc64;
 }
 
 .product-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 10px;
+	margin-bottom: 15px;
 }
 
 .add-button {
-    height: 50px;
-    width: 100px;
+	height: 50px;
+	width: 100px;
 }
 
 /* ============ RECIPES SECTION ============ */
 .recipes-card {
-    background-color: #ffffff;
-    width: 300px;
-    height: 350px;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	background-color: #ffffff;
+	width: 300px;
+	height: 350px;
+	border-radius: 20px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .recipes-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 10px;
+	margin-bottom: 15px;
 }
 
 /* ============ CART SECTION ============ */
 .cart {
-    position: relative;
-    grid-column: 1 / -1;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
+	position: relative;
+	grid-column: 1 / -1;
+	margin: 0 auto;
+	padding: 40px 20px;
+	text-align: center;
+	max-width: 600px;
+	width: 100%;
 }
 
 .cart-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
 }
 
 .cart-item {
-    width: 100%;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.3s;
+	width: 100%;
+	padding: 15px;
+	background: #f5f5f5;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: transform 0.3s;
 }
 
 .cart-item-info {
-    text-align: left;
-    flex-grow: 1;
-    margin-left: 20px;
+	text-align: left;
+	flex-grow: 1;
+	margin-left: 20px;
 }
 
 .cart-item:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }
 
 .cart-total {
-    margin-top: 40px;
-    font-size: 24px;
-    text-align: right;
-    width: 100%;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 10px;
-    margin-left: 0;
+	margin-top: 40px;
+	font-size: 24px;
+	text-align: right;
+	width: 100%;
+	padding: 15px;
+	background: #f5f5f5;
+	border-radius: 10px;
+	margin-left: 0;
+}
+
+/* ============ AUTHENTICATION ============ */
+.login {
+	width: 20%;
+	height: 30%;
+	background-color: grey;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
