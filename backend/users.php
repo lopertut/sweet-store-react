@@ -8,13 +8,13 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, DELETE");
 include 'db.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
-$input = json_decode(file_get_contents('php://input', true));
+$input = json_decode(file_get_contents("php://input", true));
 
 switch ($method) {
-	case 'GET':
+	case "GET":
 		handleGet($pdo);
 		break;
-	case 'POST':
+	case "POST":
 		handlePost($pdo, $input);
 		break;
 	//	case 'PUT':
@@ -24,7 +24,7 @@ switch ($method) {
 	//		handleDelete($pdo, $input);
 	//		break;
 	default:
-		echo json_encode(['message' => 'Invalid request method']);
+		echo json_encode(["message' => 'Invalid request method"]);
 		break;
 }
 
@@ -39,8 +39,25 @@ function handleGet($pdo)
 
 function handlePost($pdo, $input)
 {
-	$sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
+	$username = $input->username;
+	$password = $input->password;
+	$action = $input->action;
+
+	$sql = "SELECT * FROM users WHERE username = ?";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(['username' => $input->username, 'password' => $input->password]);
-	echo json_encode(['message' => 'User created']);
+	$stmt->execute([$username]);
+	$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	if ($action == "login") {
+		if ($user && $password == $user["password"]) {
+			echo json_encode(['success' => true]);
+		} else {
+			echo json_encode(['success' => false]);
+		}
+	} elseif ($action == "registration") {
+		$sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(["username" => $username, "password" => $password]);
+		echo json_encode(['message' => "User created"]);
+	}
 }
