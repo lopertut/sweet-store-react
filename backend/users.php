@@ -1,4 +1,5 @@
 <?php
+session_start();
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Max-Age: 86400");
@@ -17,12 +18,6 @@ switch ($method) {
 	case "POST":
 		handlePost($pdo, $input);
 		break;
-	//	case 'PUT':
-	//		handlePut($pdo, $input);
-	//		break;
-	//	case 'DELETE':
-	//		handleDelete($pdo, $input);
-	//		break;
 	default:
 		echo json_encode(["message' => 'Invalid request method"]);
 		break;
@@ -43,13 +38,11 @@ function handlePost($pdo, $input)
 	$password = $input->password;
 	$action = $input->action;
 
-	$sql = "SELECT * FROM users WHERE username = ?";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute([$username]);
-	$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
 	if ($action == "login") {
+		$user = getUserByUsername($pdo, $username);
+
 		if ($user && $password == $user["password"]) {
+			$_SESSION["userId"] = $user["id"];
 			echo json_encode(['success' => true]);
 		} else {
 			echo json_encode(['success' => false]);
@@ -58,6 +51,18 @@ function handlePost($pdo, $input)
 		$sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(["username" => $username, "password" => $password]);
-		echo json_encode(['message' => "User created"]);
+
+		$user = getUserByUsername($pdo, $username);
+		$sql = "INSERT INTO carts(userId) VALUES(:userId)";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(["userId" => $user["id"]]);
 	}
+}
+
+function getUserByUsername($pdo, $username)
+{
+	$sql = "SELECT * FROM users WHERE username = ?";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([$username]);
+	return $stmt->fetch(PDO::FETCH_ASSOC);
 }
