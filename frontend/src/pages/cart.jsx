@@ -1,7 +1,31 @@
 import '../css/styles.css'
 import Header from '../components/header'
+import { useEffect, useState } from 'react';
 
 export default function Cart() {
+	const [cartItems, setCartItems] = useState([]);
+	const [cartId, setCartid] = useState();
+
+	useEffect(() => {
+		fetch("http://localhost:8000/carts.php", {
+			credentials: "include"
+		})
+			.then(response => response.json())
+			.then(data => {
+				setCartid(data.cartId)
+			})
+			.catch(error => console.log(error))
+	}, [])
+
+	useEffect(() => {
+		fetch(`http://localhost:8000/carts.php?cartId=${cartId}`)
+			.then(response => response.json())
+			.then(data => {
+				setCartItems(data);
+			})
+			.catch(error => console.log(error))
+	}, [cartId])
+
 	return (
 		<>
 			<Header />
@@ -9,36 +33,18 @@ export default function Cart() {
 				<div className="cart">
 					<h2>Shopping Cart</h2>
 					<div className="cart-items">
-						<div className="cart-item">
-							<div className="cart-item-info">
-								<div><strong>tart</strong></div>
-								<div>Price: $1.67</div>
+						{cartItems.map((cartItem) => (
+							<div key={cartItem.id} className="cart-item">
+								<div className="cart-item-info">
+									<div><strong>{cartItem.name}</strong></div>
+									<div>Price: {cartItem.price}</div>
+								</div>
+								<div>Quantity: {cartItem.quantity}</div>
 							</div>
-							<div>Quantity: 2</div>
-						</div>
-
-						<div className="cart-item">
-							<div className="cart-item-info">
-								<div><strong>melon bun</strong></div>
-								<div>Price: $2.00</div>
-							</div>
-							<div>Quantity: 1</div>
-						</div>
-
-						<div className="cart-item">
-							<div className="cart-item-info">
-								<div><strong>tiramisu</strong></div>
-								<div>Price: $2.78</div>
-							</div>
-							<div>Quantity: 1</div>
-						</div>
-					</div>
-
-					<div className="cart-total">
-						<div>Total: $8.44</div>
+						))}
 					</div>
 				</div>
-			</main>
+			</main >
 		</>
 	)
 }

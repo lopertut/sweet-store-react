@@ -24,13 +24,33 @@ switch ($method) {
 
 function handleGet($pdo)
 {
-	$userId = $_SESSION["userId"];
+	if (isset($_GET["cartId"])) {
+		$cartId = intval($_GET["cartId"]);
 
-	$sql = "SELECT id FROM carts WHERE userId = ?";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute([$userId]);
-	$cart = $stmt->fetch(PDO::FETCH_ASSOC);
-	echo json_encode(["cartId" => $cart["id"]]);
+		$sql = "SELECT
+					cartItem.id,
+					cartItem.quantity,
+					cartItem.sweetId,
+					cartItem.cartId,
+					sweet.name,
+					sweet.price
+				FROM cart_items AS cartItem
+				JOIN sweets AS sweet ON cartItem.sweetId = sweet.id
+				WHERE cartItem.cartId = ?
+			";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute([$cartId]);
+		$cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($cart_items);
+	} else {
+		$userId = $_SESSION["userId"];
+
+		$sql = "SELECT id FROM carts WHERE userId = ?";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute([$userId]);
+		$cart = $stmt->fetch(PDO::FETCH_ASSOC);
+		echo json_encode(["cartId" => $cart["id"]]);
+	}
 }
 
 function handlePost($pdo, $input)
