@@ -1,8 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Max-Age: 86400");
-header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: PUT, POST, GET, DELETE");
 
 include 'db.php';
