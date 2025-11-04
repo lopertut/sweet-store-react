@@ -37,19 +37,21 @@ function handlePost($pdo, $input)
 	$password = $input->password;
 	$action = $input->action;
 
+	// TODO: maybe make into switch and separate into defirent files
 	if ($action == "login") {
 		$user = getUserByUsername($pdo, $username);
 
-		if ($user && $password == $user["password"]) {
+		if ($user && $password == password_verify($password, $user["password"])) {
 			$_SESSION["userId"] = $user["id"];
 			echo json_encode(['success' => true]);
 		} else {
 			echo json_encode(['success' => false]);
 		}
 	} elseif ($action == "registration") {
+		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 		$sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(["username" => $username, "password" => $password]);
+		$stmt->execute(["username" => $username, "password" => $hashed_password]);
 
 		$user = getUserByUsername($pdo, $username);
 		$sql = "INSERT INTO carts(userId) VALUES(:userId)";
