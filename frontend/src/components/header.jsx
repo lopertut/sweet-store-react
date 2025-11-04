@@ -1,8 +1,10 @@
 import { Link } from "react-router"
 import '../css/styles.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+	const [loggedIn, setLoggedIn] = useState();
+	
 	useEffect(() => {
 		fetch("http://localhost:8000/check-session.php", {
 			credentials: "include"
@@ -11,11 +13,31 @@ export default function Header() {
 			.then(data => {
 				if (data.loggedIn) {
 					console.log("user logged in: ", data.userId);
+					setLoggedIn(true);
 				} else {
 					console.log("user is not logged in");
 				}
 			})
 	});
+
+	function handleLogout() {
+		fetch("http://localhost:8000/users.php", {
+			credentials: "include",
+			method: "POST",
+			body: JSON.stringify({action: "logout"})
+		})
+		location.reload();
+	}
+
+	function LoginButton() {
+		if (loggedIn) {
+			return <button onClick={handleLogout}>Logout</button>
+		} else {
+			return <Link to="/login" >
+				<img className="login-button" src="src/assets/images/login-button.png" />
+			</Link>
+		}
+	}
 
 	return (
 		<header>
@@ -26,9 +48,7 @@ export default function Header() {
 				<Link to="/store">Store</Link>
 				<Link to="/recipes">Recipes</Link>
 			</nav>
-			<Link to="/login" >
-				<img className="login-button" src="src/assets/images/login-button.png" />
-			</Link>
+			<LoginButton />	
 			<Link to="/cart">
 				<img className="cart-button" src="src/assets/images/cart-icon.png" alt="Cart Image" />
 			</Link>
