@@ -16,6 +16,7 @@ export default function Login() {
 		})
 			.then((response) => response.json())
 			.then(data => {
+				console.log(data);
 				if (data.success) {
 					console.log("logged");
 					navigate("/");
@@ -31,7 +32,7 @@ export default function Login() {
 			<Header />
 			<div className="login">
 				<input id="usernameField" placeholder="enter username" />
-				<input id="passwordField" placeholder="enter password" />
+				<input id="passwordField" type="password" placeholder="enter password" />
 				<button type="submit" onClick={handleLogin}>Login</button>
 				<Link to="/registration">if you dont have account then login</Link>
 			</div>

@@ -18,7 +18,7 @@ switch ($method) {
 		handlePost($pdo, $input);
 		break;
 	default:
-		echo json_encode(["message' => 'Invalid request method"]);
+		echo json_encode(["message" => "Invalid request method"]);
 		break;
 }
 
@@ -36,9 +36,7 @@ function handlePost($pdo, $input)
 	$username = $input->username;
 	$password = $input->password;
 	$action = $input->action;
-	
 
-	// TODO: maybe make into switch and separate into defirent files
 	switch ($action) {
 		case "login":
 			$user = getUserByUsername($pdo, $username);
@@ -51,18 +49,25 @@ function handlePost($pdo, $input)
 			}
 			break;
 		case "registration":
-			$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-			$sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(["username" => $username, "password" => $hashed_password]);
+			try {
+				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+				$sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(["username" => $username, "password" => $hashed_password]);
 
-			$user = getUserByUsername($pdo, $username);
-			$sql = "INSERT INTO carts(userId) VALUES(:userId)";
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(["userId" => $user["id"]]);
+				$user = getUserByUsername($pdo, $username);
+				$sql = "INSERT INTO carts(userId) VALUES(:userId)";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(["userId" => $user["id"]]);
+
+				echo json_encode(['success' => true]);
+			} catch (Exception $e) {
+				echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+			}
 			break;
 		case "logout":
 			unset($_SESSION["userId"]);
+			session_destroy();
 	}
 }
 

@@ -1,37 +1,63 @@
 import { Link, useNavigate } from "react-router";
+import Header from '../components/header';
 import '../css/styles.css';
 
 export default function Registration() {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	function handleRegistration() {
-		const username = document.getElementById("usernameField").value;
-		const password = document.getElementById("passwordField").value;
+  function handleRegistration() {
 
-		fetch("http://localhost:8000/users.php", {
-			method: "POST",
-			credentials: "include",
-			body: JSON.stringify({ username: username, password: password, action: "registration" })
-		})
-			.then((response) => response.json())
-			.then(data => {
-				if (data.success) {
-					navigate("/login");
-				} else {
-					alert("something went wrong");
-				}
-			})
-			.catch(error => console.log(error))
-	}
+    const username = document.getElementById("usernameField").value;
+    const password = document.getElementById("passwordField").value;
 
-	return (
-		<>
-			<div className="registration">
-				<input id="usernameField" placeholder="enter username" />
-				<input id="passwordField" placeholder="enter password" />
-				<button onClick={handleRegistration}>Registration</button>
-				<Link to="/login">if you already have an account</Link>
-			</div>
-		</>
-	)
+    fetch("http://localhost:8000/users.php", {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        action: "registration"
+      })
+    })
+      .then((response) => response.json())
+      .then(data => {
+		console.log(data);
+        if (data.success) {
+          navigate("/");
+        } else {
+          alert(data.message || "Something went wrong");
+        }
+      })
+      .catch(error => console.error("Error:", error));
+  }
+
+  return (
+    <>
+      <Header />
+      <div className="registration">
+        <label htmlFor="usernameField">Username</label>
+        <input type="text" id="usernameField" required />
+
+        <label htmlFor="passwordField">Password</label>
+        <input
+          type="password"
+          id="passwordField"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters"
+          required
+        />
+
+        <input type="button" value="Register" onClick={handleRegistration} />
+        <Link to="/login">If you already have an account</Link>
+      </div>
+
+      <div className="message">
+        <h3>Password must contain the following:</h3>
+        <p>A <b>lowercase</b> letter</p>
+        <p>A <b>capital (uppercase)</b> letter</p>
+        <p>A <b>number</b></p>
+        <p>Minimum <b>8 characters</b></p>
+      </div>
+    </>
+  );
 }

@@ -523,3 +523,36 @@ main {
 	right: 0;
 	margin: auto;
 }
+
+input {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+}
+
+input[type=submit] {
+	background-color: #04AA6D;
+	color: white;
+}
+
+.registration {
+	background-color: #f1f1f1;
+	padding: 20px;
+}
+
+.message {
+	background: #f1f1f1;
+	color: #000;
+	position: relative;
+	padding: 20px;
+	margin-top: 10px;
+}
+
+.message p {
+	padding: 10px 35px;
+	font-size: 18px;
+}
