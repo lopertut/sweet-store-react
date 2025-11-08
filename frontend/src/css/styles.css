@@ -564,3 +564,40 @@ input {
 	padding: 10px 35px;
 	font-size: 18px;
 }
+
+/* login_button */
+
+position: relative;
+width: 151px;
+height: 52px;
+
+
+
+/* Rectangle 13 */
+
+position: absolute;
+left: 14.57%;
+right: 15.23%;
+top: 0%;
+bottom: 0%;
+
+background: #24604C;
+border-radius: 39px;
+
+
+/* Login */
+
+position: absolute;
+left: 33.11%;
+right: 33.11%;
+top: 26.92%;
+bottom: 38.59%;
+
+/* Small */
+font-family: 'Cherry Bomb';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 20px;
+
+color: #F4BC64;
