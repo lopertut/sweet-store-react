@@ -28,15 +28,15 @@ function handleGet($pdo)
 		$cartId = intval($_GET["cartId"]);
 
 		$sql = "SELECT
-					cartItem.id,
-					cartItem.quantity,
 					cartItem.sweetId,
-					cartItem.cartId,
 					sweet.name,
-					sweet.price
+					sweet.price,
+					SUM(sweet.price) AS price,
+					SUM(cartItem.quantity) AS quantity
 				FROM cart_items AS cartItem
 				JOIN sweets AS sweet ON cartItem.sweetId = sweet.id
 				WHERE cartItem.cartId = ?
+				GROUP BY cartItem.sweetId, sweet.name, sweet.price
 			";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute([$cartId]);
