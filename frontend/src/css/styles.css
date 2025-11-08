@@ -534,22 +534,30 @@ input {
 	margin-bottom: 16px;
 }
 
-input[type=submit] {
-	background-color: #04AA6D;
+.auth-button {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	background-color: #24604C;
 	color: white;
 }
 
-.registration {
+.authentication {
+	margin: 5% 30% 0 30%;
 	background-color: #f1f1f1;
 	padding: 20px;
+	border-radius: 20px;
 }
 
 .message {
 	background: #f1f1f1;
-	color: #000;
 	position: relative;
 	padding: 20px;
-	margin-top: 10px;
+	margin: 20px 30% 0 30%;
+	border-radius: 20px;
 }
 
 .message p {

@@ -6,6 +6,7 @@ export default function Login() {
 	const navigate = useNavigate();
 
 	function handleLogin() {
+
 		const username = document.getElementById("usernameField").value;
 		const password = document.getElementById("passwordField").value;
 
@@ -16,7 +17,6 @@ export default function Login() {
 		})
 			.then((response) => response.json())
 			.then(data => {
-				console.log(data);
 				if (data.success) {
 					console.log("logged");
 					navigate("/");
@@ -30,10 +30,12 @@ export default function Login() {
 	return (
 		<>
 			<Header />
-			<div className="login">
-				<input id="usernameField" placeholder="enter username" />
-				<input id="passwordField" type="password" placeholder="enter password" />
-				<button type="submit" onClick={handleLogin}>Login</button>
+			<div className="authentication">
+				<label htmlFor="usernameField">Username</label>
+				<input type="text" id="usernameField" required />
+				<label htmlFor="passwordField">Password</label>
+				<input type="password" id="passwordField" required />
+				<button className="auth-button" onClick={handleLogin}>Login</button>
 				<Link to="/registration">if you dont have account then login</Link>
 			</div>
 		</>
