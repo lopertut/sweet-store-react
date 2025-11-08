@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
 	const [loggedIn, setLoggedIn] = useState();
-	
+
 	useEffect(() => {
 		fetch("http://localhost:8000/check-session.php", {
 			credentials: "include"
@@ -20,11 +20,11 @@ export default function Header() {
 			})
 	});
 
-	function handleLogout() {
-		fetch("http://localhost:8000/users.php", {
+	async function handleLogout() {
+		await fetch("http://localhost:8000/users.php", {
 			credentials: "include",
 			method: "POST",
-			body: JSON.stringify({action: "logout"})
+			body: JSON.stringify({ action: "logout" })
 		})
 		location.reload();
 	}
@@ -48,7 +48,7 @@ export default function Header() {
 				<Link to="/store">Store</Link>
 				<Link to="/recipes">Recipes</Link>
 			</nav>
-			<LoginButton />	
+			<LoginButton />
 			<Link to="/cart">
 				<img className="cart-button" src="src/assets/images/cart-icon.png" alt="Cart Image" />
 			</Link>
