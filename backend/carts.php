@@ -17,6 +17,9 @@ switch ($method) {
 	case "POST":
 		handlePost($pdo, $input);
 		break;
+	case "DELETE":
+		handleDelete($pdo, $input);
+		break;
 	default:
 		echo json_encode(["message' => 'Invalid request method"]);
 		break;
@@ -62,4 +65,15 @@ function handlePost($pdo, $input)
 	$sql = "INSERT INTO cart_items(cartId, sweetId, quantity) VALUES(:cartId, :sweetId, :quantity)";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(["sweetId" => $sweetId, "quantity" => $quantity, "cartId" => $cartId]);
+}
+
+function handleDelete($pdo, $input)
+{
+	$cartId = $input->cartId;
+	$sweetId = $input->sweetId;
+	$quantity = $input->quantity;
+
+	$sql = "DELETE FROM cart_items WHERE cartId = :cartId AND sweetId = :sweetId LIMIT $quantity";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(["sweetId" => $sweetId, "cartId" => $cartId]);
 }
