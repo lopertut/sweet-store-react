@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function Cart() {
 	const [cartItems, setCartItems] = useState([]);
-	const [cartId, setCartid] = useState();
+	const [cartId, setCartId] = useState();
 
 	useEffect(() => {
 		fetch("http://localhost:8000/carts.php", {
@@ -12,19 +12,22 @@ export default function Cart() {
 		})
 			.then(response => response.json())
 			.then(data => {
-				setCartid(data.cartId);
+				setCartId(data.cartId);
 			})
 			.catch(error => console.log(error))
 	}, [])
 
-	useEffect(() => {
+	function getCartItems() {
 		fetch(`http://localhost:8000/carts.php?cartId=${cartId}`)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
 				setCartItems(data);
 			})
 			.catch(error => console.log(error))
+	}
+
+	useEffect(() => {
+		getCartItems();
 	}, [cartId])
 
 	async function handleDelete(cartId, sweetId, quantity) {
@@ -33,7 +36,7 @@ export default function Cart() {
 			body: JSON.stringify({ "cartId": cartId, "sweetId": sweetId, "quantity": quantity })
 		})
 			.catch(error => console.log(error))
-		location.reload();
+		getCartItems();
 	}
 
 	return (
