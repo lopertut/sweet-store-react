@@ -5,6 +5,22 @@ import { useEffect, useState } from 'react';
 export default function Store() {
 	const [products, setProduct] = useState([]);
 	const [cartId, setCartid] = useState();
+	const [loggedIn, setLoggedIn] = useState();
+
+	useEffect(() => {
+		fetch("http://localhost:8000/check-session.php", {
+			credentials: "include"
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.loggedIn) {
+					console.log("user logged in: ", data.userId);
+					setLoggedIn(true);
+				} else {
+					console.log("user is not logged in");
+				}
+			})
+	});
 
 	useEffect(() => {
 		fetch("http://localhost:8000/sweets.php")
@@ -29,13 +45,11 @@ export default function Store() {
 	})
 
 	function addCartItem(cartId, sweetId) {
-		let called = false;
 		fetch("http://localhost:8000/carts.php", {
 			method: "POST",
 			body: JSON.stringify({ cartId: cartId, sweetId: sweetId, quantity: 1 })
 		})
 			.catch(error => console.log(error))
-		called = true;
 	}
 
 	return (
