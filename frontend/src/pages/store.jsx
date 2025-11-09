@@ -45,11 +45,15 @@ export default function Store() {
 	})
 
 	function addCartItem(cartId, sweetId) {
-		fetch("http://localhost:8000/carts.php", {
-			method: "POST",
-			body: JSON.stringify({ cartId: cartId, sweetId: sweetId, quantity: 1 })
-		})
-			.catch(error => console.log(error))
+		if (!loggedIn) {
+			alert("you must be logged in")
+		} else {
+			fetch("http://localhost:8000/carts.php", {
+				method: "POST",
+				body: JSON.stringify({ cartId: cartId, sweetId: sweetId, quantity: 1 })
+			})
+				.catch(error => console.log(error))
+		}
 	}
 
 	return (
