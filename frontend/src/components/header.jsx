@@ -46,7 +46,6 @@ export default function Header() {
 				<Link to="/">Lifr & News</Link>
 				<Link to="/about-us">About Us</Link>
 				<Link to="/store">Store</Link>
-				<Link to="/recipes">Recipes</Link>
 			</nav>
 			<LoginButton />
 			<Link to="/cart">
