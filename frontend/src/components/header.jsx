@@ -2,11 +2,14 @@ import { Link } from "react-router"
 import '../css/styles.css'
 import { useEffect, useState } from "react";
 import checkSession from '../utils/checkSession.js';
+import { useNavigate } from 'react-router';
 
 export default function Header() {
-	const [loggedIn, setLoggedIn] = useState();
+	const [loggedIn, setLoggedIn] = useState(false);
 
-	checkSession(setLoggedIn);
+	useEffect(() => {
+		checkSession(setLoggedIn);
+	}, [])
 
 	async function handleLogout() {
 		await fetch("http://localhost:8000/users.php", {
@@ -18,12 +21,13 @@ export default function Header() {
 	}
 
 	function LoginButton() {
+		const navigate = useNavigate();
+		
 		if (loggedIn == false) {
-			return <Link to="/login" >
-				<img className="login-button" src="src/assets/images/login-button.png" />
-			</Link>
+			return <button className="login-button" onClick={() => navigate("/login")}>Login</button>
 		} else {
-			return <button onClick={handleLogout}>Logout</button>
+			console.log(loggedIn)
+			return <button className="login-button" onClick={handleLogout}>Logout</button>
 		}
 	}
 
@@ -35,10 +39,12 @@ export default function Header() {
 				<Link to="/about-us">About Us</Link>
 				<Link to="/store">Store</Link>
 			</nav>
+			<nav>
 			<LoginButton />
 			<Link to="/cart">
 				<img className="cart-button" src="src/assets/images/cart-icon.png" alt="Cart Image" />
 			</Link>
+			</nav>
 		</header>
 	);
 }
