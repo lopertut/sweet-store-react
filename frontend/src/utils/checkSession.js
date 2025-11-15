@@ -1,15 +1,13 @@
-export default function checkSession(setLoggedIn) {
+export default function checkSession(setter) {
 	fetch("http://localhost:8000/check-session.php", {
 		credentials: "include"
 	})
 		.then(response => response.json())
 		.then(data => {
 			if (data.loggedIn) {
-				console.log("user logged in: ", data.userId);
-				return setLoggedIn[data.userId];
+				return setter(true);
 			} else {
-				console.log("user is not logged in");
-				return false;
+				return setter(false);
 			}
 		})
 }
