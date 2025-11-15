@@ -47,18 +47,14 @@ function handleGet($pdo)
 		echo json_encode($cart_items);
 	} else {
 		$userId = $_SESSION["userId"];
-
-		$sql = "SELECT id FROM carts WHERE userId = ?";
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute([$userId]);
-		$cart = $stmt->fetch(PDO::FETCH_ASSOC);
-		echo json_encode(["cartId" => $cart["id"]]);
+		$cartId = getCartId($pdo, $userId);
+		echo json_encode(["cartId" => $cartId]);
 	}
 }
 
 function handlePost($pdo, $input)
 {
-	$cartId = $input->cartId;
+	$cartId = getCartId($pdo, $_SESSION["userId"]);
 	$sweetId = $input->sweetId;
 	$quantity = $input->quantity;
 
@@ -76,4 +72,12 @@ function handleDelete($pdo, $input)
 	$sql = "DELETE FROM cart_items WHERE cartId = :cartId AND sweetId = :sweetId LIMIT $quantity";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(["sweetId" => $sweetId, "cartId" => $cartId]);
+}
+
+function getCartId($pdo, $userId)
+{
+	$sql = "SELECT id from carts WHERE userId = ?";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([$userId]);
+	return $stmt->fetch(PDO::FETCH_ASSOC)["id"];
 }

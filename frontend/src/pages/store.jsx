@@ -5,10 +5,11 @@ import checkSession from '../utils/checkSession.js';
 
 export default function Store() {
 	const [products, setProduct] = useState([]);
-	const [cartId, setCartid] = useState();
 	const [loggedIn, setLoggedIn] = useState();
 
-	checkSession(setLoggedIn);
+	useEffect(() => {
+		checkSession(setLoggedIn);
+	}, [])
 
 	useEffect(() => {
 		fetch("http://localhost:8000/sweets.php")
@@ -20,25 +21,14 @@ export default function Store() {
 			.catch(error => console.log(error))
 	}, []);
 
-	useEffect(() => {
-		fetch("http://localhost:8000/carts.php", {
-			credentials: "include"
-		})
-			.then(response => response.json())
-			.then(data => {
-				console.log(data.cartId);
-				setCartid(data.cartId)
-			})
-			.catch(error => console.log(error))
-	})
-
-	function addCartItem(cartId, sweetId) {
+	function addCartItem(sweetId) {
 		if (!loggedIn) {
 			alert("you must be logged in")
 		} else {
 			fetch("http://localhost:8000/carts.php", {
 				method: "POST",
-				body: JSON.stringify({ cartId: cartId, sweetId: sweetId, quantity: 1 })
+				credentials: "include",
+				body: JSON.stringify({sweetId: sweetId, quantity: 1 })
 			})
 				.catch(error => console.log(error))
 		}
@@ -49,11 +39,11 @@ export default function Store() {
 			<Header />
 			<main className="product-grid">
 				{products.map((product) => (
-					<div className='product-card'>
+					<div className='product-card' key={product.id}>
 						<img className="product-image" src={product.imageUrl} alt="Product Image" />
 						<p>{product.name}</p>
 						<p>{product.price}</p>
-						<a href="#"><img className="add-button" onClick={() => addCartItem(cartId, product.id)} src="src/assets/images/add-button.png" alt="Add Button" /></a>
+						<a href="#"><img className="add-button" onClick={() => addCartItem(product.id)} src="src/assets/images/add-button.png" alt="Add Button" /></a>
 					</div>
 				))}
 			</main>
