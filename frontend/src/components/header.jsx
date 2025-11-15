@@ -1,24 +1,12 @@
 import { Link } from "react-router"
 import '../css/styles.css'
 import { useEffect, useState } from "react";
+import checkSession from '../utils/checkSession.js';
 
 export default function Header() {
 	const [loggedIn, setLoggedIn] = useState();
 
-	useEffect(() => {
-		fetch("http://localhost:8000/check-session.php", {
-			credentials: "include"
-		})
-			.then(response => response.json())
-			.then(data => {
-				if (data.loggedIn) {
-					console.log("user logged in: ", data.userId);
-					setLoggedIn(true);
-				} else {
-					console.log("user is not logged in");
-				}
-			})
-	});
+	checkSession(setLoggedIn);
 
 	async function handleLogout() {
 		await fetch("http://localhost:8000/users.php", {
@@ -30,12 +18,12 @@ export default function Header() {
 	}
 
 	function LoginButton() {
-		if (loggedIn) {
-			return <button onClick={handleLogout}>Logout</button>
-		} else {
+		if (loggedIn == false) {
 			return <Link to="/login" >
 				<img className="login-button" src="src/assets/images/login-button.png" />
 			</Link>
+		} else {
+			return <button onClick={handleLogout}>Logout</button>
 		}
 	}
 
