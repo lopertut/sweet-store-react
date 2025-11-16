@@ -1,5 +1,8 @@
 <?php
+ini_set('session.gc_maxlifetime', 3600);
+session_set_cookie_params(3600);
 session_start();
+
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json");
