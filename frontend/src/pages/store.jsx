@@ -43,7 +43,7 @@ export default function Store() {
 						<img className="product-image" src={product.imageUrl} alt="Product Image" />
 						<p>{product.name}</p>
 						<p>{product.price}</p>
-						<a href="#"><img className="add-button" onClick={() => addCartItem(product.id)} src="src/assets/images/add-button.png" alt="Add Button" /></a>
+						<button className="add-button" onClick={ () => addCartItem(product.id)}>Add</button>
 					</div>
 				))}
 			</main>

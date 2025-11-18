@@ -18,10 +18,10 @@ export default function AboutUs() {
                 </section>
 
                 <section className="images-section">
-                    <img src="src/assets/images/baking-class.jpeg" alt="Image 1" />
-                    <img src="src/assets/images/bakery-shop-interior.webp" alt="Image 2" />
-                    <img src="src/assets/images/desserts.jpg" alt="Image 3" />
-                    <img src="src/assets/images/staff.webp" alt="Image 4" />
+                    <img src="/assets/images/baking-class.jpeg" alt="Image 1" />
+                    <img src="/assets/images/bakery-shop-interior.webp" alt="Image 2" />
+                    <img src="/assets/images/desserts.jpg" alt="Image 3" />
+                    <img src="/assets/images/staff.webp" alt="Image 4" />
                 </section>
 
                 <section className="values-section">

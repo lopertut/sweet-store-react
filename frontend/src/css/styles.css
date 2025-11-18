@@ -445,8 +445,15 @@ main {
 }
 
 .add-button {
-	height: 50px;
+	height: 60px;
 	width: 100px;
+	border: none;
+	border-radius: 30px;
+	background-color: #24604C;
+	color: #F4BC64;
+	font-family: "Cherry Bomb One";
+	font-weight: bold;
+	font-size: 20px;
 }
 
 
