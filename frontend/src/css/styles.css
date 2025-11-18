@@ -507,6 +507,18 @@ main {
 	margin-left: 0;
 }
 
+.delete-button {
+	margin-left: 5%;
+	height: 40px;
+	width: 70px;
+	border: none;
+	border-radius: 30px;
+	background-color: red;
+	font-family: "Cherry Bomb One";
+	font-weight: normal;
+	font-size: 14px;
+}
+
 /* ============ AUTHENTICATION ============ */
 .login {
 	width: 20%;

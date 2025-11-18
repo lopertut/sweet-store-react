@@ -53,8 +53,8 @@ export default function Cart() {
 									<div>Price: {cartItem.price}</div>
 								</div>
 								<div>Quantity: {cartItem.quantity}</div>
-								<button onClick={() => handleDelete(cartId, cartItem.sweetId, 1)}>Delete</button>
-								<button onClick={() => handleDelete(cartId, cartItem.sweetId, cartItem.quantity)}>Delete all</button>
+								<button className="delete-button" onClick={() => handleDelete(cartId, cartItem.sweetId, 1)}>Delete</button>
+								<button className="delete-button" onClick={() => handleDelete(cartId, cartItem.sweetId, cartItem.quantity)}>Delete all</button>
 							</div>
 						))}
 					</div>
