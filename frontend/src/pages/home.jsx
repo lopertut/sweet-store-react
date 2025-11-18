@@ -1,7 +1,28 @@
-import '../css/styles.css'
-import Header from '../components/header'
+import '../css/styles.css';
+import Header from '../components/header';
+import { useEffect, useState } from "react";
+import addCartItem from "../utils/addCartItem.js";
+import checkSession from "../utils/checkSession.js";
 
 export default function Home() {
+	const [topProducts, setTopProducts] = useState([]);
+	const [loggedIn, setLoggedIn] = useState();
+
+	useEffect(() =>{
+		checkSession(setLoggedIn);
+	}, [])
+	
+	useEffect(() => {
+		fetch("http://localhost:8000/topPicks.php")
+		.then(response => response.json())
+		.then(data => {
+				console.log(data);
+				setTopProducts(data);	
+			})
+		.catch(error => console.log(error))
+	}, [])
+
+
 	return (
 		<>
 			<Header />
@@ -35,20 +56,14 @@ export default function Home() {
 				<section className="top-picks">
 					<h2>TOP<br />PICKS</h2>
 					<div className="items-container">
-						<div className="item">
-							<div className="image" style={{ backgroundImage: 'url(/assets/images/chocolate_cookie.png)' }}></div>
-							<div className="name">Chocolate Biscuit</div>
-							<div className="desc">cookie with rich chocolate flavor</div>
-							<div className="price">$3.99 <span>each</span></div>
-							<button className="plus-button">+</button>
-						</div>
-						<div className="item">
-							<div className="image" style={{ backgroundImage: 'url(/assets/images/melon_bun.png)' }}></div>
-							<div className="name">Melon Bun</div>
-							<div className="desc">Light bun with smooth filling</div>
-							<div className="price">$5.50 <span>each</span></div>
-							<button className="plus-button">+</button>
-						</div>
+						{topProducts.map((product) => (
+							<div className="item" key={product.sweetId}>
+								<div className="image" style={{ backgroundImage: 'url({product.url})' }}></div>
+								<div className="name">{product.name}</div>
+								<div className="price">{product.price}<span>each</span></div>
+								<button className="plus-button" onClick={() => addCartItem(product.sweetId, loggedIn)}>+</button>
+							</div>
+						))}
 					</div>
 				</section>
 			</main>

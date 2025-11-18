@@ -2,6 +2,7 @@ import '../css/styles.css'
 import Header from '../components/header'
 import { useEffect, useState } from 'react';
 import checkSession from '../utils/checkSession.js';
+import addCartItem from "../utils/addCartItem.js";
 
 export default function Store() {
 	const [products, setProduct] = useState([]);
@@ -21,19 +22,6 @@ export default function Store() {
 			.catch(error => console.log(error))
 	}, []);
 
-	function addCartItem(sweetId) {
-		if (!loggedIn) {
-			alert("you must be logged in")
-		} else {
-			fetch("http://localhost:8000/carts.php", {
-				method: "POST",
-				credentials: "include",
-				body: JSON.stringify({sweetId: sweetId, quantity: 1 })
-			})
-				.catch(error => console.log(error))
-		}
-	}
-
 	return (
 		<>
 			<Header />
@@ -43,7 +31,7 @@ export default function Store() {
 						<img className="product-image" src={product.imageUrl} alt="Product Image" />
 						<p>{product.name}</p>
 						<p>{product.price}</p>
-						<button className="add-button" onClick={ () => addCartItem(product.id)}>Add</button>
+						<button className="add-button" onClick={ () => addCartItem(product.id, loggedIn)}>Add</button>
 					</div>
 				))}
 			</main>

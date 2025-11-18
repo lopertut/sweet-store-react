@@ -268,7 +268,7 @@ main {
 
 .item {
 	display: grid;
-	grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	align-items: center;
 	padding: 15px;
 	border-radius: 10px;
@@ -278,11 +278,6 @@ main {
 .item .name {
 	font-weight: bold;
 	white-space: nowrap;
-}
-
-.item .desc {
-	font-size: 14px;
-	color: #555;
 }
 
 .item .price {
