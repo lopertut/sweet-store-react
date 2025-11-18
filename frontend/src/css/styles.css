@@ -299,8 +299,15 @@ main {
 }
 
 .item .plus-button {
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
+	background-color: #24604C;
+	color: #F4BC64;
+	font-family: "Cherry Bomb One";
+	font-size: 20px;
+	font-weight: bolder;
+	border: none;
+	border-radius: 50px;
 }
 
 .item .image {

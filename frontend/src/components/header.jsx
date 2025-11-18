@@ -33,7 +33,7 @@ export default function Header() {
 
 	return (
 		<header>
-			<Link to="/"><img className="logo" src="src/assets/images/logo.png" alt="Logo Image" /></Link>
+			<Link to="/"><img className="logo" src="/assets/images/logo.png" alt="Logo Image" /></Link>
 			<nav>
 				<Link to="/">Lifr & News</Link>
 				<Link to="/about-us">About Us</Link>
@@ -42,7 +42,7 @@ export default function Header() {
 			<nav>
 			<LoginButton />
 			<Link to="/cart">
-				<img className="cart-button" src="src/assets/images/cart-icon.png" alt="Cart Image" />
+				<img className="cart-button" src="/assets/images/cart-icon.png" alt="Cart Image" />
 			</Link>
 			</nav>
 		</header>
